@@ -48,7 +48,7 @@ func main() {
 	var concurrency int
 	var wg *sync.WaitGroup
 
-	flag.StringVar(&url, "url", "https://www.google.com.br", "URL to send requests to")
+	flag.StringVar(&url, "url", "https://www.fullcycle.com.br", "URL to send requests to")
 	flag.IntVar(&requests, "requests", 100, "Number of requests to send")
 	flag.IntVar(&concurrency, "concurrency", 10, "Number of requests to send concurrently")
 
@@ -63,6 +63,7 @@ func main() {
 	now := time.Now()
 	codes := newStatusCodes()
 
+	fmt.Println("Requesting...")
 	for requested < requests {
 		remainingRequests := requests - requested
 		batch := int(math.Min(float64(concurrency), float64(remainingRequests)))
@@ -80,8 +81,9 @@ func main() {
 		}
 		wg.Wait()
 	}
-	fmt.Println("Report:")
+	fmt.Println("Results:")
 	fmt.Printf("All requests finished in %s\n", time.Since(now))
 	fmt.Printf("Total requests: %d\n", requested)
+	fmt.Println("Number of Responses By Status Code:")
 	fmt.Println(codes)
 }
