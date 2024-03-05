@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.21.6 as build
+FROM golang:1.22.0 as build
 WORKDIR /app
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
@@ -8,9 +8,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
     -o goapp main.go
 
 # Run stage
-FROM scratch
-ARG url
-ARG requests
-ARG concurrency
+FROM alpine
 COPY --from=build /app/goapp .
-CMD ["./goapp"]
+ENTRYPOINT ["./goapp"]

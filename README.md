@@ -28,8 +28,25 @@ Poderemos utilizar essa aplicação fazendo uma chamada via docker. Ex:
 
 ## Aplicação
 
-Para realizar as execução do teste, basta utilizar o comando `stress-test` e passar os parâmetros de entrada via linha de comando.
+Para construir a imagem a partir do Dockerfile:
 
-- `--url`: URL do serviço a ser testado.
-- `--requests`: Número total de requests.
-- `--concurrency`: Número de chamadas simultâneas.
+```shell
+docker build -t NOME_DA_IMAGEM .
+```
+
+Posteriormente para executar:
+
+```shell
+docker run --rm -it NOME_DA_IMAGEM —url=http://google.com —requests=1000 —concurrency=10
+```
+
+As opções de entrada de parâmetros que podem ser passadas via linha de comando:
+
+```shell
+  -concurrency int
+        Number of requests to send concurrently (default 10)
+  -requests int
+        Number of requests to send (default 100)
+  -url string
+        URL to send requests to (default "https://www.fullcycle.com.br")
+```

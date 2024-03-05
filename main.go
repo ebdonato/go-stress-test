@@ -46,6 +46,7 @@ func main() {
 	var url string
 	var requests int
 	var concurrency int
+
 	var wg *sync.WaitGroup
 
 	flag.StringVar(&url, "url", "https://www.fullcycle.com.br", "URL to send requests to")
