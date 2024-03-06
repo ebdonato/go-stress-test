@@ -11,3 +11,4 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
 FROM alpine
 COPY --from=build /app/goapp .
 ENTRYPOINT ["./goapp"]
+CMD [ "--help" ]
