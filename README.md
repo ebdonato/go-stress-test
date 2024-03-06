@@ -37,7 +37,7 @@ docker build -t NOME_DA_IMAGEM .
 Posteriormente para executar:
 
 ```shell
-docker run NOME_DA_IMAGEM —url=http://google.com —requests=1000 —concurrency=10
+docker run NOME_DA_IMAGEM —url=http://google.com —requests=200 —concurrency=20
 ```
 
 As opções de entrada de parâmetros que podem ser passadas via linha de comando:
