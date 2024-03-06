@@ -1,12 +1,13 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"math"
 	"net/http"
 	"sync"
 	"time"
+
+	flag "github.com/spf13/pflag"
 )
 
 type statusCodes struct {
@@ -46,14 +47,22 @@ func main() {
 	var url string
 	var requests int
 	var concurrency int
+	var help bool
 
 	var wg *sync.WaitGroup
 
-	flag.StringVar(&url, "url", "https://www.fullcycle.com.br", "URL to send requests to")
-	flag.IntVar(&requests, "requests", 100, "Number of requests to send")
-	flag.IntVar(&concurrency, "concurrency", 10, "Number of requests to send concurrently")
+	flag.CommandLine.SortFlags = false
+	flag.StringVarP(&url, "url", "u", "https://www.fullcycle.com.br", "URL to send requests to")
+	flag.IntVarP(&requests, "requests", "r", 100, "Number of requests to send")
+	flag.IntVarP(&concurrency, "concurrency", "c", 10, "Number of requests to send concurrently")
+	flag.BoolVarP(&help, "help", "h", false, "Prints help")
 
 	flag.Parse()
+
+	if help {
+		flag.PrintDefaults()
+		return
+	}
 
 	fmt.Println("URL:", url)
 	fmt.Println("Requests:", requests)

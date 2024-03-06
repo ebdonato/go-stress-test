@@ -37,16 +37,27 @@ docker build -t NOME_DA_IMAGEM .
 Posteriormente para executar:
 
 ```shell
-docker run --rm -it NOME_DA_IMAGEM —url=http://google.com —requests=1000 —concurrency=10
+docker run --rm -it NOME_DA_IMAGEM —-url=http://google.com —-requests=1000 —-concurrency=10
+```
+
+ou
+
+```shell
+docker run --rm -it NOME_DA_IMAGEM —u=http://google.com —r=1000 —c=10
 ```
 
 As opções de entrada de parâmetros que podem ser passadas via linha de comando:
 
 ```shell
-  -concurrency int
-        Number of requests to send concurrently (default 10)
-  -requests int
-        Number of requests to send (default 100)
-  -url string
-        URL to send requests to (default "https://www.fullcycle.com.br")
+  -u, --url string        URL to send requests to (default "https://www.fullcycle.com.br")
+  -r, --requests int      Number of requests to send (default 100)
+  -c, --concurrency int   Number of requests to send concurrently (default 10)
+  -h, --help              Prints help
 ```
+
+|Comando|Atalho|Descrição|Valor Padrão|
+|---|---|---|---|
+|url|u|URL do serviço a ser testado|<https://www.fullcycle.com.br>|
+|requests|r|Número total de requests|100|
+|concurrency|c|Número de chamadas simultâneas|10|
+|help|h|Exibe ajuda|Falso|
