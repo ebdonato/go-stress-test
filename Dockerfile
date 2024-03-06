@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.22.0 as build
+FROM golang:1.22.0 as builder
 WORKDIR /app
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
@@ -9,5 +9,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
 
 # Run stage
 FROM alpine
-COPY --from=build /app/goapp .
+COPY --from=builder /app/goapp .
 ENTRYPOINT ["./goapp"]
+CMD [ "" ]
